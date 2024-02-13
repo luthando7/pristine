@@ -18,12 +18,16 @@ termInputSlider.oninput = (() => {
     let range = paymentRange.innerText;
 
     if (amountFigure < 1000) {
-        let payment = 0.05 * amountFigure + range * 30 + 4;
+        let payment = Number(amountFigure) * (1.05) ** Number(range) + 64 * Number(range);
         console.log("PAYMENT", payment)
-        totalPayment.innerText = ((payment + Number(amountFigure))).toString();
+        interest.innerText = Math.ceil((payment - Number(amountFigure))).toString();
+        repaymentAmount.innerText = Math.ceil(((payment + Number(amountFigure))) / Number(range) )
+        totalPayment.innerText = Math.ceil(((payment + Number(amountFigure)))).toString();
     } else {
-        let payment = 0.15 * amountFigure + range * 30 + 4;
+        let payment = Number(amountFigure) * (1.15) ** Number(range) + 64 * Number(range);
         console.log("PAYMENT", payment)
-        totalPayment.innerText = (payment + Number(amountFigure)).toString();
+        interest.innerText = Math.ceil((payment - Number(amountFigure))).toString();
+        repaymentAmount.innerText = Math.ceil(((payment) / Number(range) ))
+        totalPayment.innerText = Math.ceil((payment)).toString();
     }
 });
